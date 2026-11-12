@@ -15,7 +15,7 @@ def index():
 
     #usuário logado
     tarefas = consultar_tarefa() 
-    return render_template("index.html", t = tarefas)
+    return render_template("index.html", t=tarefas)
 
 @app.route("/login", methods=["GET","POST"])
 def login():
