@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect 
+from database import consultar_tarefa
 
 app = Flask(__name__)
 app.secret_key = "senai" #exigencia para toda vez que se cria a sessão
@@ -13,7 +14,8 @@ def index():
         return redirect("/login")
 
     #usuário logado
-    return render_template("index.html")
+    tarefas = consultar_tarefa() 
+    return render_template("index.html", t = tarefas)
 
 @app.route("/login", methods=["GET","POST"])
 def login():
