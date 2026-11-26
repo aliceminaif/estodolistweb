@@ -135,4 +135,17 @@ def apagar_tarefa(idTarefa):
     finally: #finalize sempre
             cursor.close()
             conexao.close()
-     
+
+
+def buscar_tarefa(idtarefa):
+     conexao, cursor = conectar()
+     if conexao is None:
+          return None
+     try: 
+          sql = """ 
+                SELECT idTarefa AS idtarefa, dataPrazo AS data_prazo,  nomeTarefa AS nome_tarefa, status, descricao, categoria, prioridade
+                FROM tarefa WHERE idTarefa = %s 
+                """
+
+        # Passo 2: Continue a função aqui
+
