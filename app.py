@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, flash
-from database import consultar_tarefa, inserir_tarefa
+from database import consultar_tarefa, inserir_tarefa 
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "senai" #exigencia para toda vez que se cria a sessão
