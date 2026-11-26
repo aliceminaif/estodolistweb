@@ -134,6 +134,18 @@ def adicionar():
 
     return redirect("/")
 
+@app.route("/concluir/<int:idtarefa>", methods=["POST"])
+def concluir(idtarefa):
+    tarefa = buscar_tarefa(idtarefa)
+    if tarefa is None or tarefa["status"] == "Concluída":
+        flash("Não há o que concluir nessa tarefa.")
+    elif concluir_tarefa(idtarefa):
+        flash("Tarefa concluída. Bom trabalho!")
+    else: 
+        flash("Não foi possível concluir a tarefa.")
+    return redirect("/")
+
+# passo 7: a rota excluir entra aqui
 
 if __name__ == "__main__":
     # Executa o servidor quando este arquivo é iniciado diretamente

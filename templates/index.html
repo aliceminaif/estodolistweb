@@ -11,10 +11,10 @@
         </div>
         <ul class="space-y-3">
             {% for tarefa in t %}
-                <li class="bg-white rouded-xl shador p-4 flex-col gap-3 sm: flex-row sm:items-center sm:justify-between">
+                <li class="bg-white rounded-xl shadow p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div class="space-y-2 sm:flex-1">
                         <span class="block font-medium {% if tarefa.status == "Concluída" %}line-through text-slate-400
-                                            {% endif %}">{{ tarefa.nome_tarefa }}
+                                                    {% endif %}">{{ tarefa.nome_tarefa }}
                         </span>
                         {% if tarefa.descricao %}
                             <p class="text-sm text-slate-600">{{ tarefa.descricao }}</p>
@@ -27,10 +27,10 @@
                                 {{ tarefa.data_prazo.strftime("%d/%m/%Y") }}
                             </span>
                             <span class="px-2 py-1 rounded-full
-                                                {% if tarefa.prioridade == "ALTA" %}bg-red-100 text-red-700
-                                                {% elif tarefa.prioridade == "MEDIA" %}bg-amber-100 text-amber-700 
-                                                {% else %}bg-green-100 text-green-700 
-                                                {% endif %}">
+                                                        {% if tarefa.prioridade == "ALTA" %}bg-red-100 text-red-700
+                                                        {% elif tarefa.prioridade == "MEDIA" %}bg-amber-100 text-amber-700 
+                                                        {% else %}bg-green-100 text-green-700 
+                                                        {% endif %}">
                                 Prioridade:
                                 {% if tarefa.prioridade == "ALTA" %}Alta
                                 {% elif tarefa.prioridade == "MEDIA" %} Média
@@ -40,14 +40,14 @@
                                 class="px-2 py-1 rounded-full {% if   tarefa.status == "Concluída" %}bg-indigo-100 text-indigo-700 {% elif tarefa.status == "Não realizada" %}border border-red-300 text-red-700 {% else %}bg-slate-200 text-red-700 {% endif %}">
                                 {{ tarefa.status }}
                             </span>
-
                         </div>
                     </div>
-                    <div class="flex- gap-2">
-                        {% if terefa.status != "Concluída" %}
-                        <form action="/concluir/{{ tarefa.idtarefa }}" method="post" class="flex-1 sm:flex-none">
-                            <button type="submit" class="w-full px-4 py-3 rounded-lg bg-green-100 text-green-700">Concluir</button>
-                        </form>
+                    <div class="flex gap-2">
+                        {% if tarefa.status!="Concluída" %}
+                            <form action="/concluir/{{ tarefa.idtarefa }}" method="post" class="flex-1 sm:flex-none">
+                                <button type="submit"
+                                    class="w-full px-3 py-3 rounded-lg bg-green-100 text-green-700">Concluir</button>
+                            </form>
                         {% endif %}
                         {# Editar aqui #}
                         {# Excluir aqui #}
