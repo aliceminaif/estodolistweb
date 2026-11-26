@@ -147,7 +147,7 @@ def buscar_tarefa(idtarefa):
                 FROM tarefa WHERE idTarefa = %s 
                 """
 
-        cursor.execute(sql, (idtarefa))
+        cursor.execute(sql, (idtarefa,))
         return cursor.fetchone() #Um dicionário, ou none se não existir
     except Error as erro:
         print(f"ERRO! Falha ao buscar a tarefa: {erro}")
