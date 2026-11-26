@@ -138,14 +138,23 @@ def apagar_tarefa(idTarefa):
 
 
 def buscar_tarefa(idtarefa):
-     conexao, cursor = conectar()
-     if conexao is None:
+    conexao, cursor = conectar()
+    if conexao is None:
           return None
-     try: 
-          sql = """ 
-                SELECT idTarefa AS idtarefa, dataPrazo AS data_prazo,  nomeTarefa AS nome_tarefa, status, descricao, categoria, prioridade
+    try: 
+        sql = """ 
+                SELECT idTarefa AS idtarefa, dataPrazo AS data_prazo,   nomeTarefa AS nome_tarefa, status, descricao, categoria, prioridade
                 FROM tarefa WHERE idTarefa = %s 
                 """
 
-        # Passo 2: Continue a função aqui
+        cursor.execute(sql, (idtarefa))
+        return cursor.fetchone() #Um dicionário, ou none se não existir
+    except Error as erro:
+        print(f"ERRO! Falha ao buscar a tarefa: {erro}")
+        return None
+    finally: 
+        cursor.close()
+        conexao.close()
+    
+     
 
